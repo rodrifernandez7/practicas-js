@@ -20,10 +20,10 @@
 
 //Ejemplo 3
 
-let number = parseInt(prompt('Cuantas veces queres ver un alert con la palabra "Hola"?'));
+/* let number = parseInt(prompt('Cuantas veces queres ver un alert con la palabra "Hola"?'));
 
 for (let i = 0; i < number; i++){
     alert('Hola');
     break;
-}
-alert('Tenes que ingresar un numero mayor a 0.')
+} */
+
