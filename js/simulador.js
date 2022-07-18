@@ -22,7 +22,7 @@ while (producto >= 1 && producto <= 5) {
             
         case 5:
             pantalones(); 
-            break;
+            break;    
     }
 }
 alert('Ingresa un numero valido.');
@@ -61,7 +61,7 @@ function remeras() {
 
 function buzos() {
 
-    cantidad = parseInt(prompt('El precio de los buzos es de $12.000 ¿Cuántos buzos querés?'));
+    cantidad = parseInt(prompt('El precio de los buzos es de $10.000 ¿Cuántos buzos querés?'));
 
     if (cantidad > 0 && cantidad <= 5) {
         total = 10000 * cantidad;
@@ -89,7 +89,7 @@ function camperas() {
 
 function pantalones() {
 
-    cantidad = parseInt(prompt('El precio de los pantalones es de $8.000 ¿Cuántas zapatillas querés?'));
+    cantidad = parseInt(prompt('El precio de los pantalones es de $8.000 ¿Cuántos pantalones querés?'));
 
     if (cantidad > 0 && cantidad <= 5) {
         total = 8000 * cantidad;
