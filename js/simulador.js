@@ -2,7 +2,7 @@ let producto = parseInt(prompt('¿Qué producto deseas? Seleccioná el número.\
 let total = 0;
 let cantidad;
 
-while (producto >= 1 && producto <= 5) {
+while (producto != NaN) {
     switch (producto) {
         case 1:
             zapatillas();
@@ -22,12 +22,13 @@ while (producto >= 1 && producto <= 5) {
             
         case 5:
             pantalones(); 
-            break;    
+            break;
+        
+        default:
+            alert('Ingresá un numero correcto.');
+            producto = parseInt(prompt('¿Qué producto deseas? Seleccioná el número.\n\n 1- Zapatillas\n 2- Remeras\n 3- Buzos\n 4- Camperas\n 5- Pantalones'));    
     }
 }
-alert('Ingresa un numero valido.');
-
-//producto = parseInt(prompt('¿Qué producto deseas? Seleccioná el número.\n\n 1- Zapatillas\n 2- Remeras\n 3- Buzos\n 4- Camperas\n 5- Pantalones'));
 
 
 // <--------------------- FUNCIONES --------------------->
