@@ -46,3 +46,4 @@ let nuevoProducto = {id, nombre, precio, marca};
 
 stock.push(nuevoProducto);
 
+alert('Has agregado el producto ' + nombre + ' a tu stock.');
