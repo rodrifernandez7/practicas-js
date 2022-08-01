@@ -58,15 +58,16 @@ const imprimirProd = () => {
     let productoSeleccionado = stock.find(((elemento) => elemento.id == buscarPedido));
 
     if(productoSeleccionado){
+    
         let divProducto = document.createElement('div');
 
-    divProducto.innerHTML = `<h1> El producto seleccionado es ${productoSeleccionado.nombre}</h1>
-    <img src="${productoSeleccionado.imagen}">
-    <h3> Marca: ${productoSeleccionado.marca}</h3>
-    <h3> Color: ${productoSeleccionado.color}</h3>
-    <h3> Precio: ${productoSeleccionado.precio}</h3>`
+        divProducto.innerHTML = `<h1> El producto seleccionado es ${productoSeleccionado.nombre}</h1>
+        <img src="${productoSeleccionado.imagen}">
+        <h3> Marca: ${productoSeleccionado.marca}</h3>
+        <h3> Color: ${productoSeleccionado.color}</h3>
+        <h3> Precio: ${productoSeleccionado.precio}</h3>`
 
-    document.body.append(divProducto);
+        document.body.append(divProducto);
     
     } else {
         alert('Ingresá un número válido.')
