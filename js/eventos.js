@@ -67,9 +67,9 @@ for (const producto of stock) {
       <h5 class="card-title">${producto.nombre}</h5>
       <p class="card-text"> $ ${producto.precio}</p>
       <div class="botonesCantidad">
-        <i onclick="incrementar()" id="btnIncrementar" class="bi bi-plus-lg"></i>
+        <i id="btnIncrementar" class="bi bi-plus-lg"></i>
             <div id="${producto.id}" class="cantidad"> 0 </div>
-        <i onclick="decrementar()" id="btnDecrementar" class="bi bi-dash-lg"></i>
+        <i id="btnDecrementar" class="bi bi-dash-lg"></i>
       </div>
       <br>
       <a href="#" id="button${producto.id}" class="btn btn-primary">Agregar al carrito</a>
@@ -82,28 +82,42 @@ for (const producto of stock) {
     divContenedor.style.marginTop = '50px';
 
     divContenedor.append(crearDiv);
+    
+    let carrito = [];
 
     let btnAgregarAlCarrito = document.getElementById(`button${producto.id}`);
 
     btnAgregarAlCarrito.addEventListener('click', () =>{
+        carrito.push(producto)
+        console.log(carrito);
         alert(`Agregaste ${producto.nombre} al carrito.`)
     })
+
 }
 
-let acumulador = [];
 
-let incrementar = () =>{
-    console.log('Estás incrementando');
-}
 
-let decrementar = () =>{
-    console.log('Estás decrementando.');
-}
+
+
+
 
 
 
 // ---------------- COMENTARIOS EXTRAS CODIGO A PROBAR/CORREGIR ----------------    
 
+/* let acumulador = [];
+
+let incrementar = () =>{
+    stock.forEach(element => {
+        
+    });
+
+    console.log('Estás incrementando');
+}
+
+let decrementar = () =>{
+    console.log('Estás decrementando.');
+} */
 
 
 /* let incrementar = () =>{
