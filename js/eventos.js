@@ -4,64 +4,127 @@ let stock = [
         nombre: 'Nike AF1 White',
         marca: 'Nike',
         color: 'blanco',
-        precio: 14000,
+        precio: 22000,
         categoria: 'zapatillas',
         cantidadDisp: 5,
-        imagen: '../img/nike-af1-white.jpg'
+        imagen: '../img/nike-af1-white.jpg',
+        tallesDisp: [9,10,11,12]
     },
     {
         id: 2, 
         nombre: 'Nike AF1 Black',
         marca: 'Nike',
         color: 'negro',
-        precio: 14000,
+        precio: 22000,
         categoria: 'zapatillas',
         cantidadDisp: 4,
-        imagen: '../img/nike-af1-black.webp'
+        imagen: '../img/nike-af1-black.webp',
+        tallesDisp: [9,10,11,12]
     },
     {
         id: 3, 
         nombre: 'Nike Dunk Panda',
         marca: 'Nike',
         color: 'blanco',
-        precio: 50000,
+        precio: 68000,
         categoria: 'zapatillas',
         cantidadDisp: 2,
-        imagen: '../img/nike-dunk-panda.jpg'
+        imagen: '../img/nike-dunk-panda.jpg',
+        tallesDisp: [9,9.5]
     },
     {
         id: 4, 
         nombre: 'Adidas Yeezy',
         marca: 'Adidas',
         color: 'gris',
-        precio: 45000,
+        precio: 72000,
         categoria: 'zapatillas',
         cantidadDisp: 3,
-        imagen: '../img/adidas-yeezy-gray.webp'
+        imagen: '../img/adidas-yeezy-gray.webp',
+        tallesDisp: [11,12]
     },
     {
         id: 5, 
         nombre: 'Adidas Forum Low',
         marca: 'Adidas',
         color: 'Azul',
-        precio: 32000,
+        precio: 26000,
         categoria: 'zapatillas',
         cantidadDisp: 6,
-        imagen: '../img/adidas-forum-blue.webp'
+        imagen: '../img/adidas-forum-blue.webp',
+        tallesDisp: [8.5,9,10]
     }
 ]
 
 for (const producto of stock) {
+    
     let crearDiv = document.createElement('div');
-    
-    crearDiv.className = 'card'
+    crearDiv.style.margin = '15px';
 
-    crearDiv.style.width = '18rem'
-    crearDiv.style.height = '20rem'
-    crearDiv.style.textAlign = 'center'
+    crearDiv.innerHTML = `<div class="card" style="width: 18rem;">
+    <img src="${producto.imagen}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">${producto.nombre}</h5>
+      <p class="card-text"> $ ${producto.precio}</p>
+      <div class="botonesCantidad">
+        <i onclick="incrementar()" id="btnIncrementar" class="bi bi-plus-lg"></i>
+            <div id="${producto.id}" class="cantidad"> 0 </div>
+        <i onclick="decrementar()" id="btnDecrementar" class="bi bi-dash-lg"></i>
+      </div>
+      <br>
+      <a href="#" id="button${producto.id}" class="btn btn-primary">Agregar al carrito</a>
+    </div>
+    </div>`
 
-    crearDiv.innerHTML = `<h4>${producto.nombre}</h4>
-    <img src="${producto.imagen}">`
-    
-    document.body.append(crearDiv);
+    let divContenedor = document.querySelector('.contenedor');
+    divContenedor.style.display = 'flex';
+    divContenedor.style.justifyContent = 'center';
+    divContenedor.style.marginTop = '50px';
+
+    divContenedor.append(crearDiv);
+
+    let btnAgregarAlCarrito = document.getElementById(`button${producto.id}`);
+
+    btnAgregarAlCarrito.addEventListener('click', () =>{
+        alert(`Agregaste ${producto.nombre} al carrito.`)
+    })
 }
+
+let acumulador = [];
+
+let incrementar = () =>{
+    console.log('Estás incrementando');
+}
+
+let decrementar = () =>{
+    console.log('Estás decrementando.');
+}
+
+
+
+// ---------------- COMENTARIOS EXTRAS CODIGO A PROBAR/CORREGIR ----------------    
+
+
+
+/* let incrementar = () =>{
+    let btnIncrementar = document.getElementById('btnIncrementar');
+    btnIncrementar.addEventListener('click', () =>{
+        console.log('Estas agregando.');
+})
+}
+
+let decrementar = () =>{
+    let btnDecrementar = document.getElementById('btnDecrementar');
+    btnDecrementar.addEventListener('click', () =>{
+        console.log('Estás decrementando.');
+})
+}
+
+incrementar();
+decrementar(); */
+
+
+{/* <p>Talles disponibles:</p>
+<select id="lista"> 
+<option value="9">${producto.tallesDisp}</option>
+</select> */}
