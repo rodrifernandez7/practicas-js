@@ -96,7 +96,22 @@ for (const producto of stock) {
 }
 
 
+let incrementar = () =>{
+    let btnIncrementar = document.getElementById('btnIncrementar');
+    btnIncrementar.addEventListener('click', () =>{
+        console.log('Estas agregando.');
+})
+}
 
+let decrementar = () =>{
+    let btnDecrementar = document.getElementById('btnDecrementar');
+    btnDecrementar.addEventListener('click', () =>{
+        console.log('Estás decrementando.');
+})
+}
+
+incrementar();
+decrementar();
 
 
 
@@ -118,24 +133,6 @@ let incrementar = () =>{
 let decrementar = () =>{
     console.log('Estás decrementando.');
 } */
-
-
-/* let incrementar = () =>{
-    let btnIncrementar = document.getElementById('btnIncrementar');
-    btnIncrementar.addEventListener('click', () =>{
-        console.log('Estas agregando.');
-})
-}
-
-let decrementar = () =>{
-    let btnDecrementar = document.getElementById('btnDecrementar');
-    btnDecrementar.addEventListener('click', () =>{
-        console.log('Estás decrementando.');
-})
-}
-
-incrementar();
-decrementar(); */
 
 
 {/* <p>Talles disponibles:</p>
