@@ -4,12 +4,15 @@
     box-sizing: border-box;
 }
 
-h1 {
-    text-align: center;
+body {
+    background-color: #cadfca !important;
 }
 
-h3 {
-    text-align: center;
+ul{
+    padding-top: 10px;
+    gap: 20px;
+    justify-content: end;
+    margin-right: 30px;
 }
 
 .card{
@@ -19,4 +22,8 @@ h3 {
 .botonesCantidad{
     display:flex;
     gap: 8px;
+}
+
+.contenedor{
+    flex-wrap: wrap;
 }

@@ -6,7 +6,7 @@ let stock = [
         color: 'blanco',
         precio: 22000,
         categoria: 'zapatillas',
-        cantidadDisp: 5,
+        cantidad: 1,
         imagen: '../img/nike-af1-white.jpg',
         tallesDisp: [9,10,11,12]
     },
@@ -17,7 +17,7 @@ let stock = [
         color: 'negro',
         precio: 22000,
         categoria: 'zapatillas',
-        cantidadDisp: 4,
+        cantidad: 1,
         imagen: '../img/nike-af1-black.webp',
         tallesDisp: [9,10,11,12]
     },
@@ -28,7 +28,7 @@ let stock = [
         color: 'blanco',
         precio: 68000,
         categoria: 'zapatillas',
-        cantidadDisp: 2,
+        cantidad: 1,
         imagen: '../img/nike-dunk-panda.jpg',
         tallesDisp: [9,9.5]
     },
@@ -39,7 +39,7 @@ let stock = [
         color: 'gris',
         precio: 72000,
         categoria: 'zapatillas',
-        cantidadDisp: 3,
+        cantidad: 1,
         imagen: '../img/adidas-yeezy-gray.webp',
         tallesDisp: [11,12]
     },
@@ -50,11 +50,13 @@ let stock = [
         color: 'Azul',
         precio: 26000,
         categoria: 'zapatillas',
-        cantidadDisp: 6,
+        cantidad: 1,
         imagen: '../img/adidas-forum-blue.webp',
         tallesDisp: [8.5,9,10]
     }
 ]
+
+let carrito = [];
 
 for (const producto of stock) {
     
@@ -72,31 +74,58 @@ for (const producto of stock) {
         <i id="btnDecrementar" class="bi bi-dash-lg"></i>
       </div>
       <br>
-      <a href="#" id="button${producto.id}" class="btn btn-primary">Agregar al carrito</a>
+      <a href="#" id="button${producto.id}" class="btn btn-primary">Añadir al carrito</a>
     </div>
     </div>`
 
     let divContenedor = document.querySelector('.contenedor');
     divContenedor.style.display = 'flex';
-    divContenedor.style.justifyContent = 'center';
-    divContenedor.style.marginTop = '50px';
+    divContenedor.style.justifyContent = 'center';;
 
-    divContenedor.append(crearDiv);
+    divContenedor.appendChild(crearDiv);
     
-    let carrito = [];
-
     let btnAgregarAlCarrito = document.getElementById(`button${producto.id}`);
 
     btnAgregarAlCarrito.addEventListener('click', () =>{
         carrito.push(producto)
         console.log(carrito);
         alert(`Agregaste ${producto.nombre} al carrito.`)
+        mostrarCarrito();
     })
-
+    
 }
 
 
-let incrementar = () =>{
+function mostrarCarrito(){
+    carrito.map(elemento => {
+        let otroDiv = document.createElement('div');
+
+        otroDiv.innerHTML = `<div class="card" style="width: 18rem;">
+        <img src="${elemento.imagen}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${elemento.nombre}</h5>
+          <p class="card-text"> $ ${elemento.precio}</p>
+        </div>
+        </div>`
+
+        document.body.appendChild(otroDiv);
+    })
+}
+
+
+
+
+/* sessionStorage.setItem('altura', 1.85);
+console.log(sessionStorage.getItem('altura'))
+
+localStorage.setItem('nombre', 'Rodrigo');
+console.log((localStorage.getItem('nombre')));
+
+localStorage.setItem('nombreUsuario', 'Rodrigo Fernandez');
+console.log(localStorage.getItem('nombreUsuario'));
+ */
+
+/* let incrementar = () =>{
     let btnIncrementar = document.getElementById('btnIncrementar');
     btnIncrementar.addEventListener('click', () =>{
         console.log('Estas agregando.');
@@ -112,30 +141,4 @@ let decrementar = () =>{
 
 incrementar();
 decrementar();
-
-
-
-
-
-
-// ---------------- COMENTARIOS EXTRAS CODIGO A PROBAR/CORREGIR ----------------    
-
-/* let acumulador = [];
-
-let incrementar = () =>{
-    stock.forEach(element => {
-        
-    });
-
-    console.log('Estás incrementando');
-}
-
-let decrementar = () =>{
-    console.log('Estás decrementando.');
-} */
-
-
-{/* <p>Talles disponibles:</p>
-<select id="lista"> 
-<option value="9">${producto.tallesDisp}</option>
-</select> */}
+ */
