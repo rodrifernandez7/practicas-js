@@ -26,7 +26,7 @@ const mostrarProductos = () => {
 
         let btnAgregarAlCarrito = document.getElementById(`button${producto.id}`);
     
-        btnAgregarAlCarrito.addEventListener('click', agregarProdAlCarrito);
+        btnAgregarAlCarrito.addEventListener('click', capturarProducto);
 
     })
 }
@@ -34,7 +34,7 @@ mostrarProductos();
 
 let carrito = [];
 
-function agregarProdAlCarrito(event){
+function capturarProducto(event){
     let btn = event.target;
     let item = btn.closest('.card'); //obtener el contendor que tenga la clase mas cercana 'card'.
     let itemTitle = item.querySelector('.card-title').textContent; //para obtener el contenido de ese selector sin todo el html molestando.
@@ -52,6 +52,14 @@ function agregarProdAlCarrito(event){
 }
 
 function pushItemAlCarrito(nuevoItem){
+
+    let alert = document.querySelector('.alert');//capturo el alert que traje de BS.
+    
+    alert.classList.remove('esconder');//le quito la clase que le cree.
+    setTimeout(() =>{                  
+        alert.classList.add('esconder');//establezo que pasado los 2 segundos se le vuelva a agregar
+    }, 2000)                            //2000 equivale a 2 segundos.
+    
 
     let inputCantidad = tableBody.getElementsByClassName('inputCantidad');
 
@@ -88,7 +96,6 @@ function renderizarCarrito() {
         tableBody.appendChild(divCarrito);
 
         divCarrito.querySelector('.btnBorrar').addEventListener('click', eliminarProducto);
-
     })
     precioTotal();
 }
@@ -103,6 +110,7 @@ function precioTotal(){
     })
 
     totalCarrito.innerHTML = `Total: $${total}`
+    agregarALocalStorage();//la ejecuto aca porque registra el ultimo valor del carrito antes de ser renderizado.
 }
 
 function eliminarProducto(event){
@@ -118,4 +126,18 @@ function eliminarProducto(event){
     }
     tr.remove();
     precioTotal(); //despues que se ejecuta el remove, que se ejecute la sumatoria del total otra vez (sino me eliminaba el prod pero el total anterior seguia estando).
+}
+
+// ----------------------- LOCAL STORAGE -----------------------
+
+function agregarALocalStorage(){
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+window.onload = function () { //window.onload para que se ejecute la funcion cuando se refresque la pagina.
+    let storage = JSON.parse(localStorage.getItem('carrito'));//parse para transformarlo en objeto.
+    if (storage) {
+        carrito = storage;
+        renderizarCarrito();
+    }
 }
