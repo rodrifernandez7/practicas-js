@@ -53,5 +53,38 @@ let stock = [
         cantidad: 1,
         imagen: '../img/adidas-forum-blue.webp',
         tallesDisp: [8.5,9,10]
+    },
+    {
+        id: 6, 
+        nombre: 'Converse All Star Classic',
+        marca: 'Converse',
+        color: 'negro',
+        precio: 18000,
+        categoria: 'zapatillas',
+        cantidad: 1,
+        imagen: '../img/converse.jpeg',
+        tallesDisp: [7,8,9,9.5,10]
+    },
+    {
+        id: 7, 
+        nombre: 'Nike Blazer Mid',
+        marca: 'Nike',
+        color: 'blanco',
+        precio: 27000,
+        categoria: 'zapatillas',
+        cantidad: 1,
+        imagen: '../img/nikeblazer.webp',
+        tallesDisp: [10,10.5,11]
+    },
+    {
+        id: 8,
+        nombre: 'New Balance 550 White Grey',
+        marca: 'New Balance',
+        color: 'blanco',
+        precio: 38000,
+        categoria: 'zapatillas',
+        cantidad: 1,
+        imagen: '../img/newbalance.jpg',
+        tallesDisp: [9,11]
     }
 ]

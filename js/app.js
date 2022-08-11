@@ -3,7 +3,7 @@ const mostrarProductos = () => {
 
         let crearDiv = document.createElement('div');
 
-        crearDiv.innerHTML += `<div class="card" style="width: 18rem;">
+        crearDiv.innerHTML += `<div class="card">
         <img src="${producto.imagen}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">${producto.nombre}</h5>
@@ -14,7 +14,7 @@ const mostrarProductos = () => {
             <i id="btnDecrementar" class="bi bi-dash-lg"></i>
           </div>
           <br>
-          <a href="#" id="button${producto.id}" class="btn btn-primary">Añadir al carrito</a>
+          <button href="#" id="button${producto.id}" class="btnAddCarrito">Añadir al carrito</button>
         </div>
         </div>`
 
@@ -58,7 +58,7 @@ function pushItemAlCarrito(nuevoItem){
     alert.classList.remove('esconder');//le quito la clase que le cree.
     setTimeout(() =>{                  
         alert.classList.add('esconder');//establezo que pasado los 2 segundos se le vuelva a agregar
-    }, 2000)                            //2000 equivale a 2 segundos.
+    }, 3000)                            //2000 equivale a 2 segundos.
     
 
     let inputCantidad = tableBody.getElementsByClassName('inputCantidad');
@@ -86,7 +86,10 @@ function renderizarCarrito() {
         let divCarrito = document.createElement('tr'); //me fijo desde el bootstap como esta armado para agregarlo.
         divCarrito.classList.add('itemCarritoContainer');
         divCarrito.innerHTML = `<th scope="row">1</th>
-            <td class="title">${elemento.title}</td>
+            <td>
+            <h6 class="title">${elemento.title}</h6>
+            <img src="${elemento.img}" class="productoImg" alt="">
+            </td>
             <td>${elemento.price}</td>
             <td>
               <input type="number" min="1" value=${elemento.cantidad} class="inputCantidad">
