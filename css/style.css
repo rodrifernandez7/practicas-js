@@ -52,6 +52,10 @@ ul{
     background: red;
 }
 
+.btnTalles{
+    border: 1px solid black;
+}
+
 .esconder{
     display: none;
 }

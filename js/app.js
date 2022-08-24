@@ -1,5 +1,10 @@
-const mostrarProductos = () => {
-  stock.forEach((producto) => {
+async function mostrarProductos() {
+
+  const respuesta = await fetch('../data.json');
+  const data = await respuesta.json();
+
+  data.forEach((producto) => {
+
     let crearDiv = document.createElement("div");
 
     crearDiv.innerHTML += `<div class="card">
@@ -7,12 +12,6 @@ const mostrarProductos = () => {
         <div class="card-body">
           <h5 class="card-title">${producto.nombre}</h5>
           <p class="card-text"> $ ${producto.precio}</p>
-          <div class="botonesCantidad">
-            <i id="btnIncrementar" class="bi bi-plus-lg"></i>
-                <div id="${producto.id}" class="cantidad"> 0 </div>
-            <i id="btnDecrementar" class="bi bi-dash-lg"></i>
-          </div>
-          <br>
           <button href="#" id="button${producto.id}" class="btnAddCarrito">Añadir al carrito</button>
         </div>
         </div>`;
@@ -28,15 +27,15 @@ const mostrarProductos = () => {
     btnAgregarAlCarrito.addEventListener("click", capturarProducto);
 
     btnAgregarAlCarrito.onclick = () => {
-        Swal.fire({
-            text: `${producto.nombre} añadido al carrito.`,
-            imageUrl: `${producto.imagen}`,
-            imageWidth: 284,
-            imageHeight: 284,
-            imageAlt: "Product Image",
-            confirmButtonText: 'Continuar',
-            confirmButtonColor: "#282936"
-          });
+      Swal.fire({
+        text: `${producto.nombre} añadido al carrito.`,
+        imageUrl: `${producto.imagen}`,
+        imageWidth: 284,
+        imageHeight: 284,
+        imageAlt: "Product Image",
+        confirmButtonText: 'Continuar',
+        confirmButtonColor: "#282936"
+      });
     }
   });
 };
