@@ -5,22 +5,59 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    list-style: none;
+    text-decoration: none !important;
 }
+
+header{
+    background-color: #fff;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items: baseline;
+    padding: 20px 40px 8px;
+}
+
+ul{
+    display: flex;
+    gap: 40px;
+}
+
+a{
+    color: black !important;
+}
+
+.logo{
+    font-size:1.3rem;
+}
+
+.cart{
+    position: relative; /*para que el 0 se ponga en la esquina del carrito */
+    background-color: #fff;
+    color:black;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* .cartAmount{
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size:17px;
+    background-color: red;
+    padding: 3px;
+    border-radius:3px;
+} */
 
 body{
     background: #e8e8e8 !important;
 }
 
-ul{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    gap: 20px;
-    justify-content: end;
-    margin-right: 30px;
-}
-
 .contenedor{
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px,auto));
 }
 
 .card{
@@ -34,7 +71,6 @@ ul{
 .card-title{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1em;
-
 }
 
 .card-text{
@@ -43,46 +79,22 @@ ul{
    
 }
 
-.botonesCantidad{
-    display:flex;
-    gap: 8px;
-}
-
 .btnBorrar{
     background: red;
 }
 
-.btnTalles{
-    border: 1px solid black;
-}
-
-.esconder{
-    display: none;
-}
-
 .carritoContainer{
-    margin-top: 50px;
-    margin-left: 20px;
+    max-width: 1200px;
+    margin: auto;
 }
 
 .productoImg{
-    width: 80%;
+    width: 15%;
 }
 
 input{
     width: 30%
 }
-
-
-@media (min-width: 992px){
-    .productoImg{
-        width: 12%;
-    }
-    input{
-        width:10%;
-    }
-}
-
 /* ------------------------ boton comprar ------------------------ */
 
 /* From uiverse.io */

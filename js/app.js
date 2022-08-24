@@ -17,8 +17,6 @@ async function mostrarProductos() {
         </div>`;
 
     let divContenedor = document.querySelector(".contenedor");
-    divContenedor.style.display = "flex";
-    divContenedor.style.justifyContent = "center";
 
     divContenedor.appendChild(crearDiv);
 
@@ -61,13 +59,7 @@ function capturarProducto(event) {
 }
 
 function pushItemAlCarrito(nuevoItem) {
-  /* let alert = document.querySelector(".alert"); //capturo el alert que traje de BS.
 
-  alert.classList.remove("esconder"); //le quito la clase que le cree.
-  setTimeout(() => {
-    alert.classList.add("esconder"); //establezo que pasado los 2 segundos se le vuelva a agregar
-  }, 3000); //3000 equivale a 3 segundos.
- */
   let inputCantidad = tableBody.getElementsByClassName("inputCantidad");
 
   //para que me sume otro a la cantidad en vez de agregarme el mismo otra vez.
@@ -94,7 +86,7 @@ function renderizarCarrito() {
   carrito.map((elemento) => {
     let divCarrito = document.createElement("tr"); //me fijo desde el bootstap como esta armado para agregarlo.
     divCarrito.classList.add("itemCarritoContainer");
-    divCarrito.innerHTML = `<th scope="row">1</th>
+    divCarrito.innerHTML = `
             <td>
             <h6 class="title">${elemento.title}</h6>
             <img src="${elemento.img}" class="productoImg" alt="">
