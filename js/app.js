@@ -8,11 +8,11 @@ async function mostrarProductos() {
     let crearDiv = document.createElement("div");
 
     crearDiv.innerHTML += `<div class="card">
-        <img src="${producto.imagen}" class="card-img-top" alt="...">
+        <img src="${producto.imagen}" class="imagenes card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">${producto.nombre}</h5>
           <p class="card-text"> $ ${producto.precio}</p>
-          <button href="#" id="button${producto.id}" class="btnAddCarrito">Añadir al carrito</button>
+          <button id="button${producto.id}" class="btnAddCarrito"><i class="bi bi-bag"></i></button>
         </div>
         </div>`;
 
@@ -94,7 +94,7 @@ function renderizarCarrito() {
             <td>${elemento.price}</td>
             <td>
               <input type="number" min="1" value=${elemento.cantidad} class="inputCantidad">
-              <button class="btnBorrar"><i class="bi bi-trash"></i></button>
+              <button class="btnBorrar"><i class='bx bxs-trash-alt'></i></button>
             </td>`;
 
     tableBody.appendChild(divCarrito);
