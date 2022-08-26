@@ -76,8 +76,6 @@ function pushItemAlCarrito(nuevoItem) {
 
   carrito.push(nuevoItem);
   
-  countProduct++
-
   renderizarCarrito();
 }
 
@@ -118,9 +116,7 @@ function precioTotal() {
   });
 
   totalCarrito.innerHTML = `Total: $${total}`;
-
-  iconoCarrito.innerHTML =  countProduct;
-
+  iconoCarrito.innerHTML = productAmount
   agregarALocalStorage(); //la ejecuto aca porque registra el ultimo valor del carrito antes de ser renderizado.
 }
 
@@ -135,24 +131,24 @@ function eliminarProducto(event) {
     }
   }
   tr.remove();
-  countProduct--;
+  productAmount--;
   precioTotal(); //despues que se ejecuta el remove, que se ejecute la sumatoria del total otra vez (sino me eliminaba el prod pero el total anterior seguia estando).
 }
 
-let iconoCarrito = document.getElementById('cartAmount');
 
-let countProduct = 0;
+let iconoCarrito = document.querySelector('.cartAmount');
 
+let productAmount = 0;
 
 // ----------------------- SESSION STORAGE -----------------------
 
 function agregarALocalStorage() {
-  sessionStorage.setItem("carrito", JSON.stringify(carrito));
+  localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
 window.onload = function () {
   //window.onload para que se ejecute la funcion cuando se refresque la pagina.
-  let storage = JSON.parse(sessionStorage.getItem("carrito")); //parse para transformarlo en objeto.
+  let storage = JSON.parse(localStorage.getItem("carrito")); //parse para transformarlo en objeto.
   if (storage) {
     carrito = storage;
     renderizarCarrito();
