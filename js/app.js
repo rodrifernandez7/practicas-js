@@ -75,6 +75,8 @@ function pushItemAlCarrito(nuevoItem) {
   }
 
   carrito.push(nuevoItem);
+  
+  countProduct++
 
   renderizarCarrito();
 }
@@ -116,6 +118,9 @@ function precioTotal() {
   });
 
   totalCarrito.innerHTML = `Total: $${total}`;
+
+  iconoCarrito.innerHTML =  countProduct;
+
   agregarALocalStorage(); //la ejecuto aca porque registra el ultimo valor del carrito antes de ser renderizado.
 }
 
@@ -130,8 +135,14 @@ function eliminarProducto(event) {
     }
   }
   tr.remove();
+  countProduct--;
   precioTotal(); //despues que se ejecuta el remove, que se ejecute la sumatoria del total otra vez (sino me eliminaba el prod pero el total anterior seguia estando).
 }
+
+let iconoCarrito = document.getElementById('cartAmount');
+
+let countProduct = 0;
+
 
 // ----------------------- SESSION STORAGE -----------------------
 
