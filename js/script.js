@@ -1,3 +1,4 @@
+let contenedorCarga = document.querySelector(".contenedorCarga");
 let tableBody = document.getElementById("tableBody");
 let btnBorrar = document.querySelector(".btnBorrar");
 let numCantCarrito = document.getElementById("cartAmount");
@@ -107,6 +108,8 @@ function agregarALocalStorage() {
 }
 
 window.onload = function () {
+  contenedorCarga.style.visibility = 'hidden';
+  contenedorCarga.style.opacity = '0';
   //window.onload para que se ejecute la funcion cuando se refresque la pagina.
   let storage = JSON.parse(localStorage.getItem("carrito")); //parse para transformarlo en objeto.
   if (storage) {

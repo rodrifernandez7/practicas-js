@@ -9,6 +9,8 @@
     text-decoration: none !important;
 }
 
+/* ---------------------- HEADER ---------------------- */
+
 nav{
     display:flex;
     justify-content:space-between;
@@ -45,6 +47,14 @@ a{
     padding: 3px;
     border-radius:3px;
 }
+
+/* ---------------------- INDEX ---------------------- */
+
+
+
+
+
+/* ---------------------- BODY - PRODUCTOS ---------------------- */
 
 body{
     background: #FFFFFF !important;
