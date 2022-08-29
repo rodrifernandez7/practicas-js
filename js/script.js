@@ -1,10 +1,10 @@
-let contenedorCarga = document.querySelector(".contenedorCarga");
 let tableBody = document.getElementById("tableBody");
 let btnBorrar = document.querySelector(".btnBorrar");
 let numCantCarrito = document.getElementById("cartAmount");
 let totalCarrito = document.getElementById("totalCarrito");
 let btnDecrementar = document.querySelector(".bi-dash-square");
 let btnIncrementar = document.getElementById("btnIncrementar");
+let cantModalCarrito = document.getElementById("cantidadModalCarrito");
 
 let carrito = [];
 
@@ -12,7 +12,8 @@ async function mostrarProductos() {
   const respuesta = await fetch("../data.json");
   const data = await respuesta.json();
 
-  function ordernarAlfabeticamente(x, y) {  //funcion para que aparezcan los productos ordenados alfabeticamente.
+  function ordernarAlfabeticamente(x, y) {
+    //funcion para que aparezcan los productos ordenados alfabeticamente.
     return x.nombre.localeCompare(y.nombre);
   }
   let s = data.sort(ordernarAlfabeticamente);
@@ -29,7 +30,7 @@ async function mostrarProductos() {
             </div>
             </div>`;
 
-    let divContenedor = document.querySelector(".contenedor");
+    let divContenedor = document.querySelector(".contenedor"); //capturo el div con clase 'contenedor' ya creado en el html.
 
     divContenedor.appendChild(crearDiv);
 
@@ -39,39 +40,37 @@ async function mostrarProductos() {
       agregarAlCarrito(producto.id)
     );
 
-    btnAgregarAlCarrito.onclick = () => {
-      Swal.fire({
-        text: `${producto.nombre} añadido al carrito.`,
-        imageUrl: `${producto.imagen}`,
-        imageWidth: 284,
-        imageHeight: 284,
-        imageAlt: "Product Image",
-        confirmButtonText: "Continuar",
-        confirmButtonColor: "#282936",
-      });
-    };
-
-    const agregarAlCarrito = (prodId) => {
-      let productoExistente = carrito.some((prod) => prod.id === prodId);
+    
+    const agregarAlCarrito = (prodId) => { //id que me va a llegar como parametro
+      let productoExistente = carrito.some((producto) => producto.id === prodId); //some comprueba si al menos un elemento del array cumple con la condición.
 
       if (productoExistente) {
-        const productos = carrito.map((producto) => {
+        carrito.map((producto) => {
           if (producto.id === prodId) {
-            producto.cantidad++;
+            alert('Este producto ya se encuentra en tu carrito.')//map crea un nuevo array modificado
           }
         });
       } else {
-        const item = data.find((prod) => prod.id === prodId);
-        carrito.push(item);
+        const prodEncontrado = data.find((producto) => producto.id === prodId); //hago un find que me encuentre el producto con id = al id que me llega por parametro(prodId).
+        carrito.push(prodEncontrado);
+        Swal.fire({
+          text: `${producto.nombre} añadido al carrito.`,
+          imageUrl: `${producto.imagen}`,
+          imageWidth: 284,
+          imageHeight: 284,
+          imageAlt: "Product Image",
+          confirmButtonText: "Continuar",
+          confirmButtonColor: "#282936",
+        });
       }
-      renderizarCarrito();
+      renderizarCarrito(); //ejecuto la funcion aca para que se ejecute cuando el producto es pusheado al carrito.
     };
   });
 }
 mostrarProductos();
 
 const renderizarCarrito = () => {
-  tableBody.innerHTML = "";
+  tableBody.innerHTML = ""; //para que cuando agrego un producto no me agregue devuelta el que ya habia agregado al principio y se repita.
 
   carrito.forEach((elemento) => {
     let divCarrito = document.createElement("tr");
@@ -82,24 +81,61 @@ const renderizarCarrito = () => {
         </td>
         <td>${elemento.precio}</td>
         <td>
-        <button><i class="bi bi-dash-square"></i></button>${elemento.cantidad}<button><i class="bi bi-plus-square"></i></button>
+        <button><i onclick="decrementar(${elemento.id})" class="bi bi-dash-square"></i></button><span id="${elemento.id}">${elemento.cantidad}</span><button><i onclick="incrementar(${elemento.id})" class="bi bi-plus-square"></i></button>
             <button onclick="eliminarProducto(${elemento.id})" class="btnBorrar"><i class='bx bxs-trash-alt'></i></button>
         </td>`;
 
     tableBody.appendChild(divCarrito);
   });
-  numCantCarrito.innerHTML = carrito.length;
-  totalCarrito.innerText =
-    "Total: $ " + carrito.reduce((acc, elemento) => acc + elemento.precio, 0);
-  agregarALocalStorage();
+  numCantCarrito.innerHTML = carrito.length; //igualo el numero del carrito de la navbar al length que posee el carrito entonces va agregando +1 o -1
+  cantModalCarrito.innerHTML = `(${carrito.length})`; //capturo el numero de cant del carrito del modal y le indico que sea igual al length del carrito.
+  totalCarrito.innerHTML =
+    "Total: $ " + carrito.reduce((acc, elemento) => acc + elemento.precio, 0);//reduce cada elemento del array, devolviendo un unico valor. El '0' es el valor inicial.
+  agregarALocalStorage(); //la ejecuto aca porque registra el ultimo valor del carrito antes de ser renderizado.
 };
 
-const eliminarProducto = (prodId) => {
-  const item = carrito.find((producto) => producto.id === prodId);
-  const i = carrito.indexOf(item);
-  carrito.splice(i, 1);
-  renderizarCarrito();
+const eliminarProducto = (prodId) => { //recibo el id del producto a eliminar.
+  const prodAEliminar = carrito.find((producto) => producto.id === prodId);//hago un find para encontrar el id del producto que sea igual al que recibo x parametro.
+  const i = carrito.indexOf(prodAEliminar);//para averiguar el indice del elemento que quiero eliminar. Podria haber hecho un for tambien.
+  carrito.splice(i, 1); //i= posicion del elemento que quiero eliminar del array, 1= cantidad que quiero borrar.
+  renderizarCarrito(); //ejecuto aca tambien la funcion para que cada vez que se elimine un prod, se renderice el carrito actualizado otra vez.
 };
+
+let decrementar = (id) => {
+  let prodCant = carrito.find((producto) => producto.id === id);
+  if (prodCant.cantidad >= 2){
+    prodCant.cantidad--;
+  }else{
+    return //para que corte el proceso.
+  }
+  actualizar(id);
+}
+
+let incrementar = (id) => {
+  let prodCant = carrito.find((producto) => producto.id === id);
+  if (prodCant.cantidad < prodCant.enStock){ //si la cantidad que aparece es menor a la del stock, puedo agregar mas (hasta que llegue al maximo de stock disp).
+    prodCant.cantidad++;
+  }else{
+    return //corto el proceso.
+  }
+  actualizar(id);
+}
+
+let actualizar = (id) => {
+  let search = carrito.find((item)=>item.id === id);
+  document.getElementById(id).innerHTML = search.cantidad;
+  cantModalCarrito.innerHTML = `(${search.cantidad})`;
+  calculation()
+}
+
+let calculation = () => {
+  numCantCarrito.innerHTML = carrito.map((elemento)=>elemento.cantidad).reduce((x, y) => x + y,0)
+}
+
+
+
+
+
 
 // ----------------------------- LOCAL STORAGE -----------------------------
 
