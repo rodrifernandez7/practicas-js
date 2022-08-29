@@ -85,11 +85,6 @@ body{
    
 }
 
-.btnBorrar{
-    color: #fd4646;
-    font-size: 21px;
-}
-
 .carritoContainer{
     max-width: 1200px;
     margin: auto;
@@ -99,12 +94,23 @@ body{
     height:284px;
 }
 
+/* ---------------------- MODAL ---------------------- */
+
 .productoImg{
     width: 15%;
 }
 
-input{
-    width: 30%
+.btnBorrar{
+    color: #fd4646;
+    font-size: 21px;
+    margin-left: px;
+}
+
+.bi-dash-square{
+    margin-right: 5px;
+}
+.bi-plus-square{
+    margin-left: 5px;
 }
 /* ------------------------ boton comprar ------------------------ */
 

@@ -8,7 +8,8 @@
     "categoria": "zapatillas",
     "cantidad": 1,
     "imagen": "../img/nike-af1-white.jpg",
-    "tallesDisp": [9, 10, 11, 12]
+    "tallesDisp": [9, 10, 11, 12],
+    "enStock": 7
   },
   {
     "id": 2,
@@ -19,7 +20,8 @@
     "categoria": "zapatillas",
     "cantidad": 1,
     "imagen": "../img/nike-af1-black.webp",
-    "tallesDisp": [9, 10, 11, 12]
+    "tallesDisp": [9, 10, 11, 12],
+    "enStock": 5
   },
   {
     "id": 3,
@@ -30,7 +32,8 @@
     "categoria": "zapatillas",
     "cantidad": 1,
     "imagen": "../img/nike-dunk-panda.jpg",
-    "tallesDisp": [9, 9.5]
+    "tallesDisp": [9, 9.5],
+    "enStock": 2
   },
   {
     "id": 4,
@@ -41,7 +44,8 @@
     "categoria": "zapatillas",
     "cantidad": 1,
     "imagen": "../img/adidas-yeezy-gray.webp",
-    "tallesDisp": [11, 12]
+    "tallesDisp": [11, 12],
+    "enStock": 2
   },
   {
     "id": 5,
@@ -52,7 +56,8 @@
     "categoria": "zapatillas",
     "cantidad": 1,
     "imagen": "../img/adidas-forum-blue.webp",
-    "tallesDisp": [8.5, 9, 10]
+    "tallesDisp": [8.5, 9, 10],
+    "enStock": 4
   },
   {
     "id": 6,
@@ -63,7 +68,8 @@
     "categoria": "zapatillas",
     "cantidad": 1,
     "imagen": "../img/converse.jpeg",
-    "tallesDisp": [7, 8, 9, 9.5, 10]
+    "tallesDisp": [7, 8, 9, 9.5, 10],
+    "enStock": 6
   },
   {
     "id": 7,
@@ -74,7 +80,8 @@
     "categoria": "zapatillas",
     "cantidad": 1,
     "imagen": "../img/nikeblazer.webp",
-    "tallesDisp": [10, 10.5, 11]
+    "tallesDisp": [10, 10.5, 11],
+    "enStock": 5
   },
   {
     "id": 8,
@@ -85,7 +92,8 @@
     "categoria": "zapatillas",
     "cantidad": 1,
     "imagen": "../img/newbalance.jpg",
-    "tallesDisp": [9, 11]
+    "tallesDisp": [9, 11],
+    "enStock": 3
   },
   {
    "id": 9,
@@ -96,7 +104,8 @@
    "categoria": "zapatillas",
    "cantidad": 1,
    "imagen": "../img/adidas-forum-pink-bb.jpg",
-   "tallesDisp": [10,11,12]
+   "tallesDisp": [10,11,12],
+   "enStock": 3
   },
   {
     "id": 10,
@@ -107,6 +116,7 @@
     "categoria": "ojotas",
     "cantidad": 1,
     "imagen": "../img/adidas-Yeezy-Slide-Bone.jpg",
-    "tallesDisp": [10,11,12]
+    "tallesDisp": [10,11,12],
+    "enStock": 5
   }
 ]
