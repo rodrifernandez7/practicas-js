@@ -108,8 +108,6 @@ function agregarALocalStorage() {
 }
 
 window.onload = function () {
-  contenedorCarga.style.visibility = 'hidden';
-  contenedorCarga.style.opacity = '0';
   //window.onload para que se ejecute la funcion cuando se refresque la pagina.
   let storage = JSON.parse(localStorage.getItem("carrito")); //parse para transformarlo en objeto.
   if (storage) {
