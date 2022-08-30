@@ -5,7 +5,7 @@ let totalCarrito = document.getElementById("totalCarrito");
 let btnDecrementar = document.querySelector(".bi-dash-square");
 let btnIncrementar = document.getElementById("btnIncrementar");
 
-let carrito = []; /* si tiene algo dentro, que realice el parse y localstorage OR que sea un array vacio. */
+let carrito = [];
 
 async function mostrarProductos() {
   const respuesta = await fetch("../data.json");
