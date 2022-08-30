@@ -4,9 +4,8 @@ let numCantCarrito = document.getElementById("cartAmount");
 let totalCarrito = document.getElementById("totalCarrito");
 let btnDecrementar = document.querySelector(".bi-dash-square");
 let btnIncrementar = document.getElementById("btnIncrementar");
-let cantModalCarrito = document.getElementById("cantidadModalCarrito");
 
-let carrito = [];
+let carrito = []; /* si tiene algo dentro, que realice el parse y localstorage OR que sea un array vacio. */
 
 async function mostrarProductos() {
   const respuesta = await fetch("../data.json");
@@ -79,7 +78,7 @@ const renderizarCarrito = () => {
         <h6 class="title">${elemento.nombre}</h6>
         <img src="${elemento.imagen}" class="productoImg" alt="">
         </td>
-        <td>${elemento.precio}</td>
+        <td>${elemento.cantidad * elemento.precio}</td>
         <td>
         <button><i onclick="decrementar(${elemento.id})" class="bi bi-dash-square"></i></button><span id="${elemento.id}">${elemento.cantidad}</span><button><i onclick="incrementar(${elemento.id})" class="bi bi-plus-square"></i></button>
             <button onclick="eliminarProducto(${elemento.id})" class="btnBorrar"><i class='bx bxs-trash-alt'></i></button>
@@ -87,10 +86,9 @@ const renderizarCarrito = () => {
 
     tableBody.appendChild(divCarrito);
   });
-  numCantCarrito.innerHTML = carrito.length; //igualo el numero del carrito de la navbar al length que posee el carrito entonces va agregando +1 o -1
-  cantModalCarrito.innerHTML = `(${carrito.length})`; //capturo el numero de cant del carrito del modal y le indico que sea igual al length del carrito.
+  numCantCarrito.innerHTML = carrito.map((item) => item.cantidad).reduce((acc, item) => acc + item,0); //igualo el numero del carrito de la navbar al length que posee el carrito entonces va agregando +1 o -1
   totalCarrito.innerHTML =
-    "Total: $ " + carrito.reduce((acc, elemento) => acc + elemento.precio, 0);//reduce cada elemento del array, devolviendo un unico valor. El '0' es el valor inicial.
+    "Total: $ " + carrito.map((producto) => producto.precio * producto.cantidad).reduce((acc, producto) => acc + producto, 0);///reduce cada elemento del array, devolviendo un unico valor. El '0' es el valor inicial.
   agregarALocalStorage(); //la ejecuto aca porque registra el ultimo valor del carrito antes de ser renderizado.
 };
 
@@ -105,9 +103,13 @@ let decrementar = (id) => {
   let prodCant = carrito.find((producto) => producto.id === id);
   if (prodCant.cantidad >= 2){
     prodCant.cantidad--;
+    let precioTotal = carrito.map((producto) => producto.precio * producto.cantidad).reduce((acc, producto) => acc - producto,0);
+    totalCarrito.innerHTML = `Precio total: $${precioTotal}`;
   }else{
     return //para que corte el proceso.
   }
+  renderizarCarrito(); //vuelve a re-renderizar el carrito con el precio actualizado por eso ejecuto aca tambien la function
+  agregarALocalStorage()
   actualizar(id);
 }
 
@@ -115,37 +117,38 @@ let incrementar = (id) => {
   let prodCant = carrito.find((producto) => producto.id === id);
   if (prodCant.cantidad < prodCant.enStock){ //si la cantidad que aparece es menor a la del stock, puedo agregar mas (hasta que llegue al maximo de stock disp).
     prodCant.cantidad++;
+    let precioTotal = carrito.map((producto) => producto.precio * producto.cantidad).reduce((acc, producto) => acc + producto, 0);
+    totalCarrito.innerHTML = `Precio total: $${precioTotal}`;
   }else{
     return //corto el proceso.
   }
+  renderizarCarrito(); //vuelve a re-renderizar el carrito con el precio actualizado por eso ejecuto aca tambien la function
+  agregarALocalStorage()
   actualizar(id);
 }
 
 let actualizar = (id) => {
   let search = carrito.find((item)=>item.id === id);
   document.getElementById(id).innerHTML = search.cantidad;
-  cantModalCarrito.innerHTML = `(${search.cantidad})`;
   calculation()
 }
 
 let calculation = () => {
   numCantCarrito.innerHTML = carrito.map((elemento)=>elemento.cantidad).reduce((x, y) => x + y,0)
+  agregarALocalStorage()
 }
-
-
-
-
 
 
 // ----------------------------- LOCAL STORAGE -----------------------------
 
 function agregarALocalStorage() {
-  localStorage.setItem("carrito", JSON.stringify(carrito));
+  localStorage.setItem("cart", JSON.stringify(carrito));
 }
+
 
 window.onload = function () {
   //window.onload para que se ejecute la funcion cuando se refresque la pagina.
-  let storage = JSON.parse(localStorage.getItem("carrito")); //parse para transformarlo en objeto.
+  let storage = JSON.parse(localStorage.getItem("cart")); //parse para transformarlo en objeto.
   if (storage) {
     carrito = storage;
     renderizarCarrito();
