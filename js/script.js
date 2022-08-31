@@ -5,6 +5,7 @@ let totalCarrito = document.getElementById("totalCarrito");
 let btnDecrementar = document.querySelector(".bi-dash-square");
 let btnIncrementar = document.getElementById("btnIncrementar");
 
+
 let carrito = [];
 
 async function mostrarProductos() {
@@ -81,11 +82,23 @@ const renderizarCarrito = () => {
         <td>${elemento.cantidad * elemento.precio}</td>
         <td>
         <button><i onclick="decrementar(${elemento.id})" class="bi bi-dash-square"></i></button><span id="${elemento.id}">${elemento.cantidad}</span><button><i onclick="incrementar(${elemento.id})" class="bi bi-plus-square"></i></button>
-            <button onclick="eliminarProducto(${elemento.id})" class="btnBorrar"><i class='bx bxs-trash-alt'></i></button>
+        <button onclick="eliminarProducto(${elemento.id})" class="btnBorrar"><i class='bx bxs-trash-alt'></i></button>
+        <br>
+        <br>
+        <p id="stockmax"></p>
         </td>`;
 
     tableBody.appendChild(divCarrito);
+
+/*     let stockmax = document.getElementById("stockmax");
+
+    if(elemento.cantidad == elemento.enStock){
+      stockmax.innerHTML = "Cantidad máxima en stock."
+    } */
+  
   });
+
+
   numCantCarrito.innerHTML = carrito.map((item) => item.cantidad).reduce((acc, item) => acc + item,0); //igualo el numero del carrito de la navbar al length que posee el carrito entonces va agregando +1 o -1
   totalCarrito.innerHTML =
     "Total: $ " + carrito.map((producto) => producto.precio * producto.cantidad).reduce((acc, producto) => acc + producto, 0);///reduce cada elemento del array, devolviendo un unico valor. El '0' es el valor inicial.
@@ -118,7 +131,7 @@ let incrementar = (id) => {
   if (prodCant.cantidad < prodCant.enStock){ //si la cantidad que aparece es menor a la del stock, puedo agregar mas (hasta que llegue al maximo de stock disp).
     prodCant.cantidad++;
     let precioTotal = carrito.map((producto) => producto.precio * producto.cantidad).reduce((acc, producto) => acc + producto, 0);
-    totalCarrito.innerHTML = `Precio total: $${precioTotal}`;
+    totalCarrito.innerHTML = `Total: $${precioTotal}`;
   }else{
     return //corto el proceso.
   }
@@ -128,12 +141,12 @@ let incrementar = (id) => {
 }
 
 let actualizar = (id) => {
-  let search = carrito.find((item)=>item.id === id);
-  document.getElementById(id).innerHTML = search.cantidad;
-  calculation()
+  let busqueda = carrito.find((item)=>item.id === id);
+  document.getElementById(id).innerHTML = busqueda.cantidad;
+  calcularNumCarritoNav()
 }
 
-let calculation = () => {
+let calcularNumCarritoNav = () => {
   numCantCarrito.innerHTML = carrito.map((elemento)=>elemento.cantidad).reduce((x, y) => x + y,0)
   agregarALocalStorage()
 }
