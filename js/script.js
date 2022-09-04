@@ -5,7 +5,6 @@ let totalCarrito = document.getElementById("totalCarrito");
 let btnDecrementar = document.querySelector(".bi-dash-square");
 let btnIncrementar = document.getElementById("btnIncrementar");
 
-
 let carrito = [];
 
 async function mostrarProductos() {
@@ -21,7 +20,7 @@ async function mostrarProductos() {
   data.forEach((producto) => {
     let crearDiv = document.createElement("div");
 
-    crearDiv.innerHTML += `<div class="card">
+    crearDiv.innerHTML += `<div class="card" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
             <img src="${producto.imagen}" class="imagenes card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">${producto.nombre}</h5>
@@ -167,3 +166,7 @@ window.onload = function () {
     renderizarCarrito();
   }
 };
+
+// ------------------- INICIALIZACION DE AOS (LIBRERIA) -------------------
+
+AOS.init();
