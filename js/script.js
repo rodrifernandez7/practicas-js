@@ -4,6 +4,7 @@ let numCantCarrito = document.getElementById("cartAmount");
 let totalCarrito = document.getElementById("totalCarrito");
 let btnDecrementar = document.querySelector(".bi-dash-square");
 let btnIncrementar = document.getElementById("btnIncrementar");
+let btnComprar = document.querySelector('.btnComprar');
 
 let carrito = [];
 
@@ -44,9 +45,12 @@ async function mostrarProductos() {
       let productoExistente = carrito.some((producto) => producto.id === prodId); //some comprueba si al menos un elemento del array cumple con la condición.
 
       if (productoExistente) {
-        carrito.map((producto) => {
+        carrito.map((producto) => { //map crea un nuevo array modificado
           if (producto.id === prodId) {
-            alert('Este producto ya se encuentra en tu carrito.')//map crea un nuevo array modificado
+            Swal.fire({
+              icon: 'error',
+              text: 'Este producto ya se encuentra en tu carrito.',
+            })
           }
         });
       } else {
@@ -74,7 +78,7 @@ const renderizarCarrito = () => {
   carrito.forEach((elemento) => {
     let divCarrito = document.createElement("tr");
     divCarrito.innerHTML = `
-        <td>
+        <td class="tdTitulo">
         <h6 class="title">${elemento.nombre}</h6>
         <img src="${elemento.imagen}" class="productoImg" alt="">
         </td>
@@ -82,21 +86,10 @@ const renderizarCarrito = () => {
         <td>
         <button><i onclick="decrementar(${elemento.id})" class="bi bi-dash-square"></i></button><span id="${elemento.id}">${elemento.cantidad}</span><button><i onclick="incrementar(${elemento.id})" class="bi bi-plus-square"></i></button>
         <button onclick="eliminarProducto(${elemento.id})" class="btnBorrar"><i class='bx bxs-trash-alt'></i></button>
-        <br>
-        <br>
-        <p id="stockmax"></p>
         </td>`;
 
     tableBody.appendChild(divCarrito);
-
-/*     let stockmax = document.getElementById("stockmax");
-
-    if(elemento.cantidad == elemento.enStock){
-      stockmax.innerHTML = "Cantidad máxima en stock."
-    } */
-  
   });
-
 
   numCantCarrito.innerHTML = carrito.map((item) => item.cantidad).reduce((acc, item) => acc + item,0); //igualo el numero del carrito de la navbar al length que posee el carrito entonces va agregando +1 o -1
   totalCarrito.innerHTML =
@@ -150,13 +143,29 @@ let calcularNumCarritoNav = () => {
   agregarALocalStorage()
 }
 
+btnComprar.addEventListener("click", ()=> {
+  if (carrito.length == 0) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Tu carrito está vacío.',
+    })
+  }else{
+    carrito.length = 0;
+      Swal.fire(
+    'Compra realizada!',
+    'Muchas gracias por confiar en nosotros.',
+    'success'
+  ) 
+  }
+  renderizarCarrito(); 
+})
 
 // ----------------------------- LOCAL STORAGE -----------------------------
 
 function agregarALocalStorage() {
   localStorage.setItem("cart", JSON.stringify(carrito));
 }
-
 
 window.onload = function () {
   //window.onload para que se ejecute la funcion cuando se refresque la pagina.

@@ -13,13 +13,13 @@
   },
   {
     "id": 2,
-    "nombre": "Nike Air Force 1 Black",
+    "nombre": "Nike Air Force 1 Low Supreme Black",
     "marca": "Nike",
     "color": "negro",
     "precio": 22000,
     "categoria": "zapatillas",
     "cantidad": 1,
-    "imagen": "../img/nike-af1-black.webp",
+    "imagen": "../img/airforce-supreme-black.jpg",
     "tallesDisp": [9, 10, 11, 12],
     "enStock": 5
   },
@@ -31,7 +31,7 @@
     "precio": 68000,
     "categoria": "zapatillas",
     "cantidad": 1,
-    "imagen": "../img/nike-dunk-panda.jpg",
+    "imagen": "../img/dunk-panda.jpg",
     "tallesDisp": [9, 9.5],
     "enStock": 2
   },
@@ -55,45 +55,45 @@
     "precio": 26000,
     "categoria": "zapatillas",
     "cantidad": 1,
-    "imagen": "../img/adidas-forum-blue.webp",
+    "imagen": "../img/ad-forum.jpg",
     "tallesDisp": [8.5, 9, 10],
     "enStock": 4
   },
   {
     "id": 6,
-    "nombre": "Converse All Star Classic",
-    "marca": "Converse",
-    "color": "negro",
-    "precio": 18000,
+    "nombre": "New Balance 550 White Grey Dark Grey",
+    "marca": "New Balance",
+    "color": "blanco",
+    "precio": 47800,
     "categoria": "zapatillas",
     "cantidad": 1,
-    "imagen": "../img/converse.jpeg",
-    "tallesDisp": [7, 8, 9, 9.5, 10],
-    "enStock": 6
+    "imagen": "../img/New-Balance-550-White-Grey-Dark-Grey.jpg",
+    "tallesDisp": [9.5, 10],
+    "enStock": 4
   },
   {
     "id": 7,
-    "nombre": "Nike Blazer Mid",
+    "nombre": "Nike Blazer Mid 77 ",
     "marca": "Nike",
     "color": "blanco",
     "precio": 27000,
     "categoria": "zapatillas",
     "cantidad": 1,
-    "imagen": "../img/nikeblazer.webp",
+    "imagen": "../img/blazer.jpg",
     "tallesDisp": [10, 10.5, 11],
     "enStock": 5
   },
   {
-    "id": 8,
-    "nombre": "New Balance 550 White Grey",
-    "marca": "New Balance",
-    "color": "blanco",
-    "precio": 38000,
+    "id": 18,
+    "nombre": "Jordan 1 Low Mocha",
+    "marca": "Jordan",
+    "color": "marron",
+    "precio": 73000,
     "categoria": "zapatillas",
     "cantidad": 1,
-    "imagen": "../img/newbalance.jpg",
-    "tallesDisp": [9, 11],
-    "enStock": 3
+    "imagen": "../img/Jordan-1-Low-Mocha.jpg",
+    "tallesDisp": [9,10],
+    "enStock": 5
   },
   {
    "id": 9,
@@ -118,5 +118,30 @@
     "imagen": "../img/adidas-Yeezy-Slide-Bone.jpg",
     "tallesDisp": [10,11,12],
     "enStock": 5
+  },
+  {
+    "id": 11,
+    "nombre": "Jordan 3 Retro UNC (2020)",
+    "marca": "Jordan",
+    "color": "blanco",
+    "precio": 143000,
+    "categoria": "zapatillas",
+    "cantidad": 1,
+    "imagen": "../img/Jordan-3-Retro-UNC-2020.jpg",
+    "tallesDisp": [12],
+    "enStock": 5
+  },
+  {
+    "id": 12,
+    "nombre": "Jordan 1 Retro High White University Blue Black",
+    "marca": "Jordan",
+    "color": "blanco",
+    "precio": 154000,
+    "categoria": "zapatillas",
+    "cantidad": 1,
+    "imagen": "../img/Jordan-1-Retro-High-White-University-Blue-Black.jpg",
+    "tallesDisp": [11,12],
+    "enStock": 5
   }
+
 ]

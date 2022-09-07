@@ -36,6 +36,25 @@ a{
     color: black !important;
 }
 
+ul li a{
+    position: relative;
+}
+
+ul li a::after{
+    content: "";
+    position: absolute;
+    background-color: #7d8180;
+    height:3px;
+    width:0;
+    left: 0;
+    bottom: -4px;
+    transition: all 0.5s;
+  }
+
+ul li a:hover:after{
+    width:100%;
+  }
+
 .logo{
     font-size:1.3rem;
 }
@@ -61,7 +80,7 @@ a{
 .banner{
     position: relative;
     width: 100%;
-    height: calc(100vh - 105px);
+    height: calc(100vh - 90px);
     background-color: #f5f5f5;
     background-size: cover;
     background-position: center;
@@ -70,7 +89,6 @@ a{
 }
 
 .bannerContent{
-    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -153,7 +171,40 @@ a{
 
 .imagenes{
     height:284px;
+    object-fit: contain;
 }
+
+/* ---------------------- FOOTER ---------------------- */
+
+.footerContent{
+    margin-top: 150px;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 30px;
+}
+
+.footerContent h3{
+    font-size: 22px;
+}
+
+.copyright{
+    text-align: center;
+    font-size: 14px;
+}
+
+.metodosPago img{
+    width: 300px;
+}
+
+.iconBx{
+    padding-right: 6px;
+}
+
+
+
+
+
+
 
 /* ---------------------- MODAL ---------------------- */
 
@@ -173,9 +224,12 @@ a{
 .bi-plus-square{
     margin-left: 5px;
 }
+
+.tdTitulo{
+    width: 65%;
+}
 /* ------------------------ boton comprar ------------------------ */
 
-/* From uiverse.io */
 button {
     position: relative;
     display: inline-block;
@@ -205,7 +259,7 @@ button {
     width: 3rem;
     height: 3rem;
     background: #282936;
-    border-radius: 1.625rem;
+    border-radius: 3px;
    }
    
    button.btnComprar .circle .icon {
