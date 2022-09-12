@@ -176,6 +176,3 @@ window.onload = function () {
   }
 };
 
-// ------------------- INICIALIZACION DE AOS (LIBRERIA) -------------------
-
-AOS.init();
